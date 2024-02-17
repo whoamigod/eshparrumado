@@ -1,13 +1,14 @@
 name: eShopOnWeb B&T
 
 #Triggers (uncomment line below to use it).
-on: [push, workflow_dispatch]
+# on: [push, workflow_dispatch]
+on: workflow_dispatch
 
 #Environment variables https://docs.github.com/en/actions/learn-github-actions/environment-variables
 env:
   RESOURCE-GROUP: rg-DevOps
   LOCATION: westeurope
-  TEMPLATE-FILE: /infra/ # webapp.bicep
+  TEMPLATE-FILE: /infra/webapp.bicep
   SUBSCRIPTION-ID: e788df9b-c8c6-43e5-8a01-037e2c5bba4d
   WEBAPP-NAME: eshoponwebfiap001
 
@@ -66,7 +67,8 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: bicep-template
-        path: bicep-template
+        path: /infra/webapp.bicep
+        # path: bicep-template
         
    #Login in your azure subscription using a service principal (credentials stored as GitHub Secret in repo)
     - name: Azure Login
@@ -80,7 +82,8 @@ jobs:
       with:
         subscriptionId: ${{ env.SUBSCRIPTION-ID }}
         resourceGroupName: ${{ env.RESOURCE-GROUP }}
-        template: bicep-template/webapp.bicep
+        template: /infra/webapp.bicep
+        # template: bicep-template/webapp.bicep
         parameters: 'webAppName=${{ env.WEBAPP-NAME }} location=${{ env.LOCATION }}'
         failOnStdErr: false   
     
