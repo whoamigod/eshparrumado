@@ -7,7 +7,7 @@ on: [push, workflow_dispatch]
 env:
   RESOURCE-GROUP: rg-DevOps
   LOCATION: westeurope
-  TEMPLATE-FILE: .azure/bicep/webapp.bicep
+  TEMPLATE-FILE: .infra/webapp.bicep
   SUBSCRIPTION-ID: e788df9b-c8c6-43e5-8a01-037e2c5bba4d
   WEBAPP-NAME: eshoponwebfiap001
 
