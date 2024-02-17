@@ -45,7 +45,8 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: bicep-template
-        path: ${{ env.TEMPLATE-FILE }}
+        path: /infra/webapp.bicep
+        # path: ${{ env.TEMPLATE-FILE }}
         
   # Use Bicep to deploy infrastructure + Publish webapp 
   deploy:
