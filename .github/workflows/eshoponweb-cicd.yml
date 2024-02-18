@@ -8,7 +8,7 @@ on: workflow_dispatch
 env:
   RESOURCE-GROUP: rg-DevOps
   LOCATION: westeurope
-  TEMPLATE-FILE: /infra/ # webapp.bicep
+  TEMPLATE-FILE: .azure/bicep/webapp.bicep
   SUBSCRIPTION-ID: e788df9b-c8c6-43e5-8a01-037e2c5bba4d
   WEBAPP-NAME: eshoponwebfiap001
 
@@ -45,8 +45,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: bicep-template
-        path: /infra/webapp.bicep
-        # path: ${{ env.TEMPLATE-FILE }}
+        path: ${{ env.TEMPLATE-FILE }}
         
   # Use Bicep to deploy infrastructure + Publish webapp 
   deploy:
@@ -68,8 +67,7 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: bicep-template
-        path: /infra/webapp.bicep
-        # path: bicep-template
+        path: bicep-template
         
    #Login in your azure subscription using a service principal (credentials stored as GitHub Secret in repo)
     - name: Azure Login
@@ -83,8 +81,7 @@ jobs:
       with:
         subscriptionId: ${{ env.SUBSCRIPTION-ID }}
         resourceGroupName: ${{ env.RESOURCE-GROUP }}
-        template: /infra/webapp.bicep
-        # template: bicep-template/webapp.bicep
+        template: bicep-template/webapp.bicep
         parameters: 'webAppName=${{ env.WEBAPP-NAME }} location=${{ env.LOCATION }}'
         failOnStdErr: false   
     
