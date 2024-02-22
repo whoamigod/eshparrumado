@@ -1,16 +1,16 @@
 name: eShopOnWeb B&T
 
 #Triggers (uncomment line below to use it)
-# on: [push, workflow_dispatch]
-on: workflow_dispatch
+on: [push, workflow_dispatch]
+#on: workflow_dispatch
 
 #Environment variables https://docs.github.com/en/actions/learn-github-actions/environment-variables
 env:
-  RESOURCE-GROUP: 
-  LOCATION: 
+  RESOURCE-GROUP: ex6
+  LOCATION: eastus
   TEMPLATE-FILE: .azure/bicep/webapp.bicep
-  SUBSCRIPTION-ID: 
-  WEBAPP-NAME: 
+  SUBSCRIPTION-ID: f7703f4b-ec45-4e96-96bd-818e180644f3
+  WEBAPP-NAME: shoparrumado
 
 
 jobs:
